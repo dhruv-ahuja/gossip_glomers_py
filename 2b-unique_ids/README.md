@@ -1,6 +1,6 @@
 # unique-ids
 
-This instance uses string combining a random integer from 0 to system-maximum limit (9223372036854775807 in my case) and the request's POSIX timestamp.
+This instance uses string combining a cryptographically-secure random intenger and the POSIX timestamp at the time of request.
 This yields almost neglibly better performance than the UUID4 generation method.
 
 ## output

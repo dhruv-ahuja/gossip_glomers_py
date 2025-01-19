@@ -1,8 +1,7 @@
 #!/usr/bin/env python3
 
-import datetime
-import random
-import sys
+import secrets
+import time
 from typing import cast
 
 from maelstrom import Body, Node, Request
@@ -20,10 +19,10 @@ async def generate(req: Request) -> Body:
     if body["type"] != "generate" or not message_id:
         return {}
 
-    random_int = random.randint(0, sys.maxsize)
-    timestamp = datetime.datetime.now(datetime.UTC).timestamp()
+    random_int = secrets.randbits(64)
+    timestamp = time.time()
 
-    id_ = f"{random_int}{int(timestamp)}"
+    id_ = f"{random_int}{timestamp}"
     return {"type": "generate_ok", "id": id_, "in_reply_to": message_id}
 
 
