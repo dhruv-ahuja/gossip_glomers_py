@@ -23,7 +23,7 @@ values = []
 neighbor_ids = []
 
 # Track messages we've already seen to prevent cycles
-# node adds value -> forwards to ALL neighbors -> neighbors do the same thing
+# node adds value -> forwards to its neighbors -> neighbors do the same thing
 # using a set prevents that as we just propagate values not seen before
 seen_messages = set()
 
