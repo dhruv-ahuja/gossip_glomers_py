@@ -50,13 +50,8 @@ async def _broadcast_all_values():
                 body = {"type": "broadcast_all", "values": values}
                 request = Request(node_id, neighbor_id, body)
 
-                try:
-                    await node._send(request)
-                except Exception as ex:
-                    await node.log(f"error broadcast all to {request}: {ex}")
+                await node._send(request)
             await asyncio.sleep(1)
-    except asyncio.CancelledError:
-        await node.log(f"stopping value dump for node {node_id}")
     except Exception as ex:
         await node.log(f"exception when broadcasting values from node {node.node_id}: {ex}")
 
